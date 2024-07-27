@@ -9,7 +9,9 @@ import { sendVerificationRequest } from './email/sendLoginMail';
 import { newUserCreated } from './notification';
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise) as Adapter,
+  adapter: MongoDBAdapter(clientPromise, {
+    databaseName: 'TodoIT',
+  }) as Adapter, // Add custom user model
   secret: process.env.AUTH_SECRET as string,
 
   pages: {

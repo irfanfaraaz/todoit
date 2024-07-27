@@ -46,7 +46,7 @@ export function SidebarNav() {
                 {item.id && (
                   <div
                     className={cn(
-                      'flex items-center mt-6 mb-2',
+                      'mb-2 mt-6 flex items-center',
                       item.id === 'filters' && 'my-0',
                     )}>
                     {/* <p className="flex flex-1 text-base">
@@ -60,7 +60,7 @@ export function SidebarNav() {
                 <div className={cn('flex items-center lg:w-full')}>
                   <div
                     className={cn(
-                      'flex items-center text-left lg:gap-3 rounded-lg py-2 transition-all hover:text-primary justify-between w-full',
+                      'flex w-full items-center justify-between rounded-lg py-2 text-left transition-all hover:text-primary lg:gap-3',
                       pathname === item.link
                         ? 'active rounded-lg bg-primary/10 text-primary transition-all hover:text-primary'
                         : 'text-foreground ',
@@ -69,11 +69,11 @@ export function SidebarNav() {
                       key={idx}
                       href={item.link}
                       className={cn(
-                        'flex items-center text-left gap-3 rounded-lg transition-all hover:text-primary w-full',
+                        'flex w-full items-center gap-3 rounded-lg text-left transition-all hover:text-primary',
                       )}>
-                      <div className="flex gap-4 items-center w-full">
-                        <div className="flex gap-2 items-center">
-                          <p className="flex text-base text-left">
+                      <div className="flex w-full items-center gap-4">
+                        <div className="flex items-center gap-2">
+                          <p className="flex text-left text-base">
                             <item.icon className="h-4 w-4" />
                           </p>
                           <p>{item.name}</p>

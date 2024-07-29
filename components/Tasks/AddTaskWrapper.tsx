@@ -40,10 +40,10 @@ export default function AddTaskButton({
   title: string;
 }) {
   return (
-    <button className="pl-2 flex mt-2 flex-1" onClick={onClick}>
+    <button className="mt-2 flex flex-1 pl-2" onClick={onClick}>
       <div className="flex flex-col items-center justify-center gap-1 text-center">
-        <div className="flex items-center gap-2 justify-center">
-          <Plus className="h-4 w-4 text-primary hover:bg-primary hover:rounded-xl hover:text-white" />
+        <div className="flex items-center justify-center gap-2">
+          <Plus className="h-4 w-4 text-primary hover:rounded-xl hover:bg-primary hover:text-white" />
           <h3 className="text-base font-light tracking-tight text-foreground/70">
             {title}
           </h3>

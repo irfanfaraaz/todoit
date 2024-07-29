@@ -43,7 +43,7 @@ export default async function Upcoming() {
         <h1 className="text-lg font-semibold md:text-2xl">Upcoming</h1>
       </div>
       <div className="flex flex-col gap-1 py-4">
-        <p className="font-bold flex text-sm">Overdue</p>
+        <p className="flex text-sm font-bold">Overdue</p>
         {overdueTodos.length === 0 ? (
           <p className="text-green-600">Great job! No overdue tasks!</p>
         ) : (
@@ -58,7 +58,7 @@ export default async function Upcoming() {
         {Object.keys(groupTodosByDate || {}).map((dueDate) => {
           return (
             <div key={dueDate} className="mb-6">
-              <p className="font-bold flex text-sm items-center">
+              <p className="flex items-center text-sm font-bold">
                 {moment(dueDate).format('LL')} <Dot />
                 {moment(dueDate).format('dddd')}
               </p>

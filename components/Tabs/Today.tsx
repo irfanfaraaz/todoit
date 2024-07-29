@@ -35,7 +35,7 @@ export default async function Today() {
         <h1 className="text-lg font-semibold md:text-2xl">Today</h1>
       </div>
       <div className="flex flex-col gap-1 py-4">
-        <p className="font-bold flex text-sm">Overdue</p>
+        <p className="flex text-sm font-bold">Overdue</p>
         {overdueTodos.length === 0 ? (
           <p className="text-green-600">Great job! No overdue tasks!</p>
         ) : (
@@ -47,7 +47,7 @@ export default async function Today() {
       </div>
       {/* <AddTaskWrapper /> */}
       <div className="flex flex-col gap-1 py-4">
-        <p className="font-bold flex text-sm items-center border-b-2 p-2 border-gray-100">
+        <p className="flex items-center border-b-2 border-gray-100 p-2 text-sm font-bold">
           {moment(new Date()).format('LL')}
           <Dot />
           Today

@@ -5,10 +5,12 @@ import AddTaskInline from './AddTaskInline';
 
 export const AddTaskWrapper = ({
   projects,
+  userId,
   labels,
   parentTask,
   projectId,
 }: {
+  userId: string;
   projects: any[];
   labels: any[];
   parentTask?: any;
@@ -18,6 +20,7 @@ export const AddTaskWrapper = ({
 
   return showAddTask ? (
     <AddTaskInline
+      userId={userId}
       projects={projects}
       labels={labels}
       setShowAddTask={setShowAddTask}

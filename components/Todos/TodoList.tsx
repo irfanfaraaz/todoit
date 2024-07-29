@@ -28,7 +28,7 @@ export default async function TodoList() {
       <div className="flex flex-col gap-1 py-4">
         <Todos items={inCompleteTodos} />
       </div>
-      <AddTaskWrapper projects={projects} labels={labels} />
+      <AddTaskWrapper projects={projects} labels={labels} userId={user.id} />
       <div className="flex flex-col gap-1 py-4">
         <Todos items={completedTodos} />
       </div>

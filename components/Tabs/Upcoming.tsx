@@ -56,7 +56,7 @@ export default async function Upcoming() {
         )}
       </div>
       <div className="pb-6">
-        <AddTaskWrapper projects={projects} labels={labels} />
+        <AddTaskWrapper userId={user.id} projects={projects} labels={labels} />
       </div>
       <div className="flex flex-col gap-1 py-4">
         {Object.keys(groupTodosByDate || {}).map((dueDate) => {
@@ -68,7 +68,11 @@ export default async function Upcoming() {
               </p>
               <ul>
                 <Todos items={groupTodosByDate[dueDate]} />
-                <AddTaskWrapper projects={projects} labels={labels} />
+                <AddTaskWrapper
+                  userId={user.id}
+                  projects={projects}
+                  labels={labels}
+                />
               </ul>
             </div>
           );

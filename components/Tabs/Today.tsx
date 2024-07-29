@@ -57,7 +57,7 @@ export default async function Today() {
         </p>
         <Todos items={todayTodos} />
       </div>
-      <AddTaskWrapper projects={projects} labels={labels} />
+      <AddTaskWrapper userId={user.id} projects={projects} labels={labels} />
     </div>
   );
 }

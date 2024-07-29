@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '../ui/select';
+import { createTodo } from '@/lib/actions/todo.actions';
 
 const FormSchema = z.object({
   title: z.string().min(2, {
@@ -44,11 +45,13 @@ const FormSchema = z.object({
 
 export default function AddTaskInline({
   setShowAddTask,
+  userId,
   projects,
   labels,
   parentTask,
   projectId: myProjectId,
 }: {
+  userId: string;
   projects: any[];
   labels: any[];
   setShowAddTask: Dispatch<SetStateAction<boolean>>;
@@ -67,6 +70,7 @@ export default function AddTaskInline({
 
   const defaultValues = {
     title: '',
+    userId,
     description: '',
     priority,
     dueDate: new Date(),
@@ -85,12 +89,20 @@ export default function AddTaskInline({
     if (projectId) {
       const taskData = {
         title,
+        userId,
         description,
         priority: parseInt(priority),
         dueDate: moment(dueDate).valueOf(),
         projectId: projectId as string,
         labelId: labelId as string,
       };
+
+      await createTodo(taskData);
+      toast({
+        title: 'Task added 🎉',
+        description: 'Your task has been added successfully. ✅',
+      });
+      setShowAddTask(false);
     }
   }
 

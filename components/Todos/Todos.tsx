@@ -6,6 +6,17 @@ import { checkATodo, unCheckATodo } from '@/lib/actions/todo.actions';
 
 const Todos = ({ items }: { items: any }) => {
   const { toast } = useToast();
+  const messages = [
+    "You're a rockstar",
+    'Great job!',
+    'Well done!',
+    'Keep it up!',
+    'Fantastic work!',
+  ];
+
+  const getRandomMessage = () => {
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
 
   const handleOnChangeTodo = async (task: any) => {
     if (task.isCompleted) {
@@ -14,7 +25,7 @@ const Todos = ({ items }: { items: any }) => {
       await checkATodo({ taskId: task._id });
       toast({
         title: '✅ Task completed',
-        description: "You're a rockstar",
+        description: getRandomMessage(),
         duration: 3000,
       });
     }

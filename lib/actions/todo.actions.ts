@@ -46,7 +46,6 @@ export async function createTodo(params: any) {
   }
 }
 
-// create function to check/uncheck todo
 export async function checkATodo(params: any) {
   const { taskId } = params;
   try {

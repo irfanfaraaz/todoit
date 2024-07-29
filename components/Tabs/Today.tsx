@@ -6,6 +6,8 @@ import moment from 'moment';
 import Todos from '../Todos/Todos';
 import { getCurrentUser } from '@/lib/session';
 import { getAllUserTodos } from '@/lib/actions/todo.actions';
+import { AddTaskWrapper } from '../Tasks/AddTaskWrapper';
+import { labels, projects } from '@/lib/constants';
 
 export default async function Today() {
   const user = await getCurrentUser();
@@ -45,7 +47,6 @@ export default async function Today() {
           </>
         )}
       </div>
-      {/* <AddTaskWrapper /> */}
       <div className="flex flex-col gap-1 py-4">
         <p className="flex items-center border-b-2 border-gray-100 p-2 text-sm font-bold">
           {moment(new Date()).format('LL')}
@@ -56,6 +57,7 @@ export default async function Today() {
         </p>
         <Todos items={todayTodos} />
       </div>
+      <AddTaskWrapper projects={projects} labels={labels} />
     </div>
   );
 }

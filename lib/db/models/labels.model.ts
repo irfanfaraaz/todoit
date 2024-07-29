@@ -3,7 +3,7 @@ import { Schema, model, models, Document, Types } from 'mongoose';
 export interface ILabel extends Document {
   userId: Schema.Types.ObjectId;
   name: string;
-  color: string;
+  color?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,7 +20,6 @@ const LabelSchema = new Schema({
   },
   color: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

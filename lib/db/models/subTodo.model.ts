@@ -1,7 +1,7 @@
 import { Schema, model, models, Document, Types } from 'mongoose';
 
 export interface ISubTask extends Document {
-  todoId: Schema.Types.ObjectId;
+  parentId: Schema.Types.ObjectId;
   userId: Schema.Types.ObjectId;
   labelId?: Schema.Types.ObjectId;
   title: string;
@@ -14,7 +14,7 @@ export interface ISubTask extends Document {
 }
 
 const SubTaskSchema = new Schema({
-  todoId: {
+  parentId: {
     type: Schema.Types.ObjectId,
     ref: 'Todo',
     required: true,

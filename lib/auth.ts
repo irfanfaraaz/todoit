@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
           pass: process.env.EMAIL_SERVER_PASSWORD as string,
         },
       },
-      from: `SIFChat <${process.env.EMAIL_FROM}>`,
+      from: `TodoIT <${process.env.EMAIL_FROM}>`,
     }),
   ],
   events: {

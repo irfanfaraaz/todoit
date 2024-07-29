@@ -30,12 +30,12 @@ export async function createTodo(params: any) {
   try {
     await connectToDatabase();
     const todo = new Todo({
-      title: 'test 2',
-      description: 'heeh',
+      title,
+      description,
       userId,
-      // projectId,
-      // labelId,
-      dueDate: new Date(),
+      projectId,
+      labelId,
+      dueDate: new Date(dueDate),
     });
     await todo.save();
     revalidatePath('/dashboard');

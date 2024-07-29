@@ -3,7 +3,7 @@ import { Schema, model, models, Document } from 'mongoose';
 export interface IProject extends Document {
   userId: Schema.Types.ObjectId;
   name: string;
-  color: string;
+  color?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -20,7 +20,6 @@ const ProjectSchema = new Schema({
   },
   color: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

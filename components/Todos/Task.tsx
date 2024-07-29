@@ -16,7 +16,8 @@ export default function Task({
   handleOnChange: any;
   showDetails?: boolean;
 }) {
-  const { title, dueDate } = data;
+  const { title, description, dueDate } = data;
+  const isOverdue = moment(dueDate).isBefore(moment(), 'day');
 
   return (
     <div
@@ -44,6 +45,18 @@ export default function Task({
                   )}>
                   {title}
                 </button>
+                <p className="text-xs text-foreground/70">{description}</p>
+                <div className="flex items-center justify-center gap-1">
+                  <Calendar className="h-3 w-3 text-primary" />
+                  <p
+                    className={clsx(
+                      'text-xs',
+                      isOverdue ? 'text-red-500' : 'text-primary',
+                      'text-[10px]', // Make date a bit smaller
+                    )}>
+                    {moment(dueDate).format('LL')}
+                  </p>
+                </div>
               </div>
             </DialogTrigger>
           </div>
@@ -58,7 +71,9 @@ export default function Task({
               </div>
               <div className="flex items-center justify-center gap-1">
                 <Calendar className="h-3 w-3 text-primary" />
-                <p className="text-xs text-primary">
+                <p className="text-[10px] text-primary">
+                  {' '}
+                  {/* Make date a bit smaller */}
                   {moment(dueDate).format('LL')}
                 </p>
               </div>

@@ -5,6 +5,8 @@ import moment from 'moment';
 import Todos from '../Todos/Todos';
 import { getCurrentUser } from '@/lib/session';
 import { getAllUserTodos } from '@/lib/actions/todo.actions';
+import { AddTaskWrapper } from '../Tasks/AddTaskWrapper';
+import { labels, projects } from '@/lib/constants';
 // import { AddTaskWrapper } from '../add-tasks/add-task-button';
 
 export default async function Upcoming() {
@@ -53,7 +55,9 @@ export default async function Upcoming() {
           </>
         )}
       </div>
-      <div className="pb-6">{/* <AddTaskWrapper /> */}</div>
+      <div className="pb-6">
+        <AddTaskWrapper projects={projects} labels={labels} />
+      </div>
       <div className="flex flex-col gap-1 py-4">
         {Object.keys(groupTodosByDate || {}).map((dueDate) => {
           return (
@@ -64,7 +68,7 @@ export default async function Upcoming() {
               </p>
               <ul>
                 <Todos items={groupTodosByDate[dueDate]} />
-                {/* <AddTaskWrapper /> */}
+                <AddTaskWrapper projects={projects} labels={labels} />
               </ul>
             </div>
           );

@@ -1,27 +1,32 @@
 import { Schema, model, models, Document, Types } from 'mongoose';
 
 export interface ISubTask extends Document {
-  todo_id: Schema.Types.ObjectId;
-  user_id: Schema.Types.ObjectId;
+  todoId: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
+  labelId?: Schema.Types.ObjectId;
   title: string;
   description?: string;
-  due_date?: Date;
+  dueDate?: Date;
   priority: number;
-  is_completed: boolean;
-  created_at: Date;
-  updated_at: Date;
+  isCompleted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const SubTaskSchema = new Schema({
-  todo_id: {
+  todoId: {
     type: Schema.Types.ObjectId,
     ref: 'Todo',
     required: true,
   },
-  user_id: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  labelId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Label',
   },
   title: {
     type: String,
@@ -30,22 +35,22 @@ const SubTaskSchema = new Schema({
   description: {
     type: String,
   },
-  due_date: {
+  dueDate: {
     type: Date,
   },
   priority: {
     type: Number,
     default: 1,
   },
-  is_completed: {
+  isCompleted: {
     type: Boolean,
     default: false,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

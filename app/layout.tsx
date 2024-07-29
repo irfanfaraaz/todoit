@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
-
+import { Toaster } from '@/components/ui/toaster';
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -39,6 +39,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <SiteHeader />
               <div className="flex-1">{children}</div>
             </div>
+            <Toaster />
             <TailwindIndicator />
           </ThemeProvider>
         </body>

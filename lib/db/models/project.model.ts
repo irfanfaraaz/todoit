@@ -1,15 +1,15 @@
 import { Schema, model, models, Document } from 'mongoose';
 
 export interface IProject extends Document {
-  user_id: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
   name: string;
   color: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const ProjectSchema = new Schema({
-  user_id: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
@@ -22,11 +22,11 @@ const ProjectSchema = new Schema({
     type: String,
     required: true,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

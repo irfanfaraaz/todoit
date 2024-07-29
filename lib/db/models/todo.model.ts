@@ -1,26 +1,31 @@
 import { Schema, model, models, Document } from 'mongoose';
 
 export interface ITodo extends Document {
-  project_id?: Schema.Types.ObjectId;
-  user_id: Schema.Types.ObjectId;
+  projectId?: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
+  labelId?: Schema.Types.ObjectId;
   title: string;
   description?: string;
-  due_date?: Date;
+  due_date: Date;
   priority: number;
-  is_completed: boolean;
-  created_at: Date;
-  updated_at: Date;
+  isCompleted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const TodoSchema = new Schema({
-  project_id: {
+  projectId: {
     type: Schema.Types.ObjectId,
     ref: 'Project',
   },
-  user_id: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+  },
+  labelId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Label',
   },
   title: {
     type: String,
@@ -29,22 +34,23 @@ const TodoSchema = new Schema({
   description: {
     type: String,
   },
-  due_date: {
+  dueDate: {
     type: Date,
+    required: true,
   },
   priority: {
     type: Number,
     default: 1,
   },
-  is_completed: {
+  isCompleted: {
     type: Boolean,
     default: false,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

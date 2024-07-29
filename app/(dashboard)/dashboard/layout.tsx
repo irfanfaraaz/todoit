@@ -14,7 +14,7 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <>
-      <div className="flex-1 lg:max-w-2xl">
+      <div className="flex-1 xl:max-w-6xl">
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
           <SidebarNav />
           <div className="flex flex-col">

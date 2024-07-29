@@ -1,20 +1,20 @@
 import { Schema, model, models, Document, Types } from 'mongoose';
 
 export interface IComment extends Document {
-  todo_id: Schema.Types.ObjectId;
-  user_id: Schema.Types.ObjectId;
+  todoId: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
   content: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 const CommentSchema = new Schema({
-  todo_id: {
+  todoId: {
     type: Schema.Types.ObjectId,
     ref: 'Todo',
     required: true,
   },
-  user_id: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true,
@@ -23,11 +23,11 @@ const CommentSchema = new Schema({
     type: String,
     required: true,
   },
-  created_at: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },
-  updated_at: {
+  updatedAt: {
     type: Date,
     default: Date.now,
   },

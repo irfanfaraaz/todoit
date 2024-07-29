@@ -1,9 +1,10 @@
+import mongoose from 'mongoose';
 import 'next-auth';
 import { DefaultSession, DefaultUser } from 'next-auth';
 
 declare module 'next-auth' {
   interface User extends DefaultUser {
-    id: string;
+    id: mongoose.Types.ObjectId;
     name: string;
     email: string;
     image: string;

@@ -18,27 +18,4 @@ export function getInitials(name: string | null | undefined): string {
   return `${firstInitial}${secondInitial || firstInitial}`;
 }
 
-// export const primaryNavItems = [
-//   {
-//     id: 'primary',
-//     name: 'Inbox',
-//     link: '/loggedin',
-//     icon: <Inbox className="w-4 h-4" />,
-//   },
-//   {
-//     name: 'Today',
-//     link: '/loggedin/today',
-//     icon: <Calendar className="w-4 h-4" />,
-//   },
-//   {
-//     name: 'Upcoming',
-//     link: '/loggedin/upcoming',
-//     icon: <CalendarDays className="w-4 h-4" />,
-//   },
-//   {
-//     id: 'filters',
-//     name: 'Filters & Labels',
-//     link: '/loggedin/filter-labels',
-//     icon: <Grid2X2 />,
-//   },
-// ];
+export const parseStringify = (value: any) => JSON.parse(JSON.stringify(value));

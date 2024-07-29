@@ -7,6 +7,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import clientPromise from './db/db';
 import { sendVerificationRequest } from './email/sendLoginMail';
 import { newUserCreated } from './notification';
+import User from './db/models/user.model'; // Assuming you have a User model
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise, {
@@ -51,6 +52,14 @@ export const authOptions: NextAuthOptions = {
   events: {
     createUser: async ({ user }) => {
       await newUserCreated(user);
+    },
+  },
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session?.user) {
+        session.user.id = user.id;
+      }
+      return session;
     },
   },
 };

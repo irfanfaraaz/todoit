@@ -1,15 +1,5 @@
 'use client';
-import {
-  Bell,
-  Hash,
-  Home,
-  LineChart,
-  Package,
-  Package2,
-  PlusIcon,
-  ShoppingCart,
-  Users,
-} from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 
 import Link from 'next/link';
 
@@ -22,8 +12,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { siteConfig } from '@/config/site';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from './ui/dialog';
 
 export function SidebarNav() {
@@ -34,14 +24,6 @@ export function SidebarNav() {
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
             {siteConfig.primaryNavItems.map((item, idx) => (
-              // <Link
-              //   key={idx}
-              //   href={item.link}
-              //   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
-              //   <item.icon className="h-4 w-4" />
-              //   {item.name}
-              // </Link>
-
               <div key={idx}>
                 {item.id && (
                   <div
@@ -60,7 +42,7 @@ export function SidebarNav() {
                 <div className={cn('flex items-center lg:w-full')}>
                   <div
                     className={cn(
-                      'flex w-full items-center justify-between rounded-lg py-2 text-left transition-all hover:text-primary lg:gap-3',
+                      'flex w-full items-center justify-between rounded-lg p-2 text-left transition-all hover:text-primary lg:gap-3',
                       pathname === item.link
                         ? 'active rounded-lg bg-primary/10 text-primary transition-all hover:text-primary'
                         : 'text-foreground ',

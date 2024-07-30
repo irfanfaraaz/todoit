@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import { SiteHeader } from '@/components/site-header';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/Theme/theme-provider';
 import { seoMetaData } from '@/config/seo-meta-data';
 import { fontMono, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';

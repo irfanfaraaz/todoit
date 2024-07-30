@@ -1,3 +1,4 @@
+import DeleteProject from '@/components/projects/DeleteProject';
 import { AddTaskWrapper } from '@/components/Tasks/AddTaskWrapper';
 import CompletedTodos from '@/components/Todos/CompletedTodos';
 import Todos from '@/components/Todos/Todos';
@@ -38,7 +39,7 @@ export default async function ProjectIdPage({
             {projectName || 'Project'}
           </h1>
           <div className="flex items-center gap-6 lg:gap-12">
-            {/* <DeleteProject projectId={projectId} /> */}
+            <DeleteProject projectId={projectId} userId={user.id} />
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-1">

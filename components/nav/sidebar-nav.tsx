@@ -1,5 +1,5 @@
 'use client';
-import { PlusIcon } from 'lucide-react';
+import { Hash, PlusIcon } from 'lucide-react';
 
 import Link from 'next/link';
 
@@ -15,28 +15,64 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from '../ui/dialog';
+import { useEffect, useState } from 'react';
+import AddProjectDialog from '../projects/AddProject';
 
-export function SidebarNav() {
+export function SidebarNav({
+  projectList,
+  userId,
+}: {
+  projectList: any[];
+  userId: any;
+}) {
+  const primaryNavItems = siteConfig.primaryNavItems;
   const pathname = usePathname();
+  const LIST_OF_TITLE_IDS: any = {
+    primary: '',
+    projects: 'My Projects',
+  };
+
+  const [navItems, setNavItems] = useState([...primaryNavItems]);
+
+  const renderItems = (projectList: any) => {
+    return projectList.map(
+      ({ _id, name }: { _id: any; name: any }, idx: any) => {
+        return {
+          ...(idx === 0 && { id: 'projects' }),
+          name,
+          link: `/dashboard/projects/${_id.toString()}`,
+          icon: Hash, // Change here: use the component directly
+        };
+      },
+    );
+  };
+  useEffect(() => {
+    if (projectList) {
+      const projectItems = renderItems(projectList);
+      const items = [...primaryNavItems, ...projectItems];
+      setNavItems(items);
+    }
+  }, [primaryNavItems, projectList]);
+
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-            {siteConfig.primaryNavItems.map((item, idx) => (
+            {navItems.map((item, idx) => (
               <div key={idx}>
                 {item.id && (
                   <div
                     className={cn(
-                      'mb-2 mt-6 flex items-center',
+                      'mb-2 mt-6 flex items-center p-2',
                       item.id === 'filters' && 'my-0',
                     )}>
-                    {/* <p className="flex flex-1 text-base">
-                      {LIST_OF_TITLE_IDS[id]}
+                    <p className="flex flex-1 text-base">
+                      {LIST_OF_TITLE_IDS[item.id]}
                     </p>
-                    {LIST_OF_TITLE_IDS[id] === 'My Projects' && (
-                      <AddProjectDialog />
-                    )} */}
+                    {LIST_OF_TITLE_IDS[item.id] === 'My Projects' && (
+                      <AddProjectDialog userId={userId} />
+                    )}
                   </div>
                 )}
                 <div className={cn('flex items-center lg:w-full')}>
@@ -56,7 +92,8 @@ export function SidebarNav() {
                       <div className="flex w-full items-center gap-4">
                         <div className="flex items-center gap-2">
                           <p className="flex text-left text-base">
-                            <item.icon className="h-4 w-4" />
+                            <item.icon className="h-4 w-4" />{' '}
+                            {/* Change here: render the component */}
                           </p>
                           <p>{item.name}</p>
                         </div>

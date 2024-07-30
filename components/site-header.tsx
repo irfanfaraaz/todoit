@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { MainNav } from '@/components/nav/main-nav';
-import { ThemeToggle } from '@/components/theme-toggle';
+import { ThemeToggle } from '@/components/Theme/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { PATHS } from '@/config/paths';
 import { siteConfig } from '@/config/site';

@@ -6,8 +6,6 @@ import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import clientPromise from './db/db';
 import { sendVerificationRequest } from './email/sendLoginMail';
-import { newUserCreated } from './notification';
-import User from './db/models/user.model'; // Assuming you have a User model
 
 export const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter(clientPromise, {
@@ -49,11 +47,7 @@ export const authOptions: NextAuthOptions = {
       from: `TodoIT <${process.env.EMAIL_FROM}>`,
     }),
   ],
-  events: {
-    createUser: async ({ user }) => {
-      await newUserCreated(user);
-    },
-  },
+
   callbacks: {
     session: async ({ session, user }) => {
       if (session?.user) {

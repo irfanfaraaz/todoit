@@ -14,7 +14,7 @@ import {
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { Dialog, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogTrigger } from '../ui/dialog';
 
 export function SidebarNav() {
   const pathname = usePathname();

@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import { MainNav } from '@/components/main-nav';
+import { MainNav } from '@/components/nav/main-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
 import { PATHS } from '@/config/paths';
 import { siteConfig } from '@/config/site';
 import { getCurrentUser } from '@/lib/session';
-import { UserAccountNav } from './user-account-nav';
+import { UserAccountNav } from './nav/user-account-nav';
 
 export async function SiteHeader() {
   const user = await getCurrentUser();

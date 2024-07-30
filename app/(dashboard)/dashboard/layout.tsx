@@ -1,5 +1,5 @@
-import MobileNav from '@/components/mobile-sidebar-nav';
-import { SidebarNav } from '@/components/sidebar-nav';
+import MobileNav from '@/components/nav/mobile-sidebar-nav';
+import { SidebarNav } from '@/components/nav/sidebar-nav';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -11,10 +11,10 @@ interface SettingsLayoutProps {
   children: React.ReactNode;
 }
 
-export default function SettingsLayout({ children }: SettingsLayoutProps) {
+export default function Layout({ children }: SettingsLayoutProps) {
   return (
     <>
-      <div className="flex-1 xl:max-w-6xl">
+      <div className="flex-1 ">
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
           <SidebarNav />
           <div className="flex flex-col">

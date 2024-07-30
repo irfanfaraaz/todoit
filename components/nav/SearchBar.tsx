@@ -2,9 +2,9 @@
 import { Search, SearchIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { Button } from './ui/button';
-import { Form, FormControl, FormField, FormItem } from './ui/form';
-import { Input } from './ui/input';
+import { Button } from '../ui/button';
+import { Form, FormControl, FormField, FormItem } from '../ui/form';
+import { Input } from '../ui/input';
 
 export default function SearchForm() {
   const form = useForm();
@@ -39,7 +39,7 @@ export default function SearchForm() {
                 </FormControl>
               </FormItem>
             )}></FormField>
-          <Button className="px-4 hover:bg-orange-600">
+          <Button className="px-4 hover:bg-cyan-400">
             <SearchIcon className="h-4 w-4" />
           </Button>
         </div>

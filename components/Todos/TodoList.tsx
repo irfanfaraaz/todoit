@@ -21,7 +21,7 @@ export default async function TodoList() {
   const inCompleteTodos = todos.filter((todo: any) => !todo.isCompleted);
 
   return (
-    <div className="xl:px-40">
+    <div className="px-10 md:px-20">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-semibold md:text-2xl">Inbox</h1>
       </div>

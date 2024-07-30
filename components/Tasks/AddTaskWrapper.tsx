@@ -10,9 +10,9 @@ export const AddTaskWrapper = ({
   parentTask,
   projectId,
 }: {
-  userId: string;
-  projects: any[];
-  labels: any[];
+  userId?: string;
+  projects?: any[];
+  labels?: any[];
   parentTask?: any;
   projectId?: any;
 }) => {

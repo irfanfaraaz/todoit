@@ -7,7 +7,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
-import { Dialog, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogTrigger } from '../ui/dialog';
+// import SearchForm from './SearchBar';
 
 const MobileNav = () => {
   const pathname = usePathname();
@@ -83,6 +84,21 @@ const MobileNav = () => {
             </nav>
           </SheetContent>
         </Sheet>
+        <div className="flex w-full items-center gap-1 py-2 md:justify-between md:gap-2">
+          {/* <div className="lg:flex-1">
+            <Link href={navLink}>
+              <p className="text-sm font-semibold text-foreground/70 w-24">
+                {navTitle}
+              </p>
+            </Link>
+          </div> */}
+          <div className="w-full flex-1 place-content-center">
+            {/* <SearchForm /> */}
+          </div>
+          <div className="h-12 w-12 place-content-center lg:h-20 lg:w-16">
+            {/* <Image alt="logo" src={todovexLogo} /> */}
+          </div>
+        </div>
       </header>
     </div>
   );

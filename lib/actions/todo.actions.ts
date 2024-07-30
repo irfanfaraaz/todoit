@@ -83,3 +83,44 @@ export async function unCheckATodo(params: any) {
     throw new Error('Failed to uncheck todo');
   }
 }
+
+interface SearchTodosParams {
+  userId: string;
+  query: string;
+}
+
+export async function searchTodos(params: SearchTodosParams) {
+  try {
+    await connectToDatabase();
+    const { userId, query } = params;
+    //@ts-ignore
+    const todos = await Todo.find({
+      userId,
+      $or: [
+        { title: { $regex: query, $options: 'i' } },
+        { description: { $regex: query, $options: 'i' } },
+      ],
+    })
+      .populate('projectId')
+      .populate('labelId')
+      .exec();
+
+    return todos;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to search todos');
+  }
+}
+
+export async function getTodosByProjectId(params: any) {
+  try {
+    await connectToDatabase();
+    const { projectId } = params;
+    //@ts-ignore
+    const todos = await Todo.find({ projectId }).populate('projectId').exec();
+    return parseStringify(todos);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch todos');
+  }
+}

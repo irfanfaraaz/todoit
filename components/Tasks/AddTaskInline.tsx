@@ -51,9 +51,9 @@ export default function AddTaskInline({
   parentTask,
   projectId: myProjectId,
 }: {
-  userId: string;
-  projects: any[];
-  labels: any[];
+  userId?: string;
+  projects?: any[];
+  labels?: any[];
   setShowAddTask: Dispatch<SetStateAction<boolean>>;
   parentTask?: any;
   projectId?: any;
@@ -74,7 +74,7 @@ export default function AddTaskInline({
     description: '',
     priority,
     dueDate: new Date(),
-    projectId: '66a7ab1fdb535ca1e4c201b4',
+    projectId: '',
     labelId: '',
   };
 
@@ -228,7 +228,7 @@ export default function AddTaskInline({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {labels.map((label: any, idx: number) => (
+                      {labels?.map((label: any, idx: number) => (
                         <SelectItem key={idx} value={label._id}>
                           {label?.name}
                         </SelectItem>
@@ -256,7 +256,7 @@ export default function AddTaskInline({
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {projects.map((project: any, idx: number) => (
+                    {projects?.map((project: any, idx: number) => (
                       <SelectItem key={idx} value={project._id}>
                         {project?.name}
                       </SelectItem>

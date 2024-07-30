@@ -36,11 +36,8 @@ export default async function Upcoming() {
     return acc;
   }, {});
 
-  if (groupTodosByDate === undefined || overdueTodos === undefined) {
-    <p>Loading...</p>;
-  }
   return (
-    <div className="xl:px-40">
+    <div className="px-10 md:px-20">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-semibold md:text-2xl">Upcoming</h1>
       </div>

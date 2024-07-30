@@ -5,17 +5,15 @@ import { parseStringify } from '../utils';
 import { revalidatePath } from 'next/cache';
 
 export async function createProject(params: any) {
-  const { name, description, userId, color } = params;
+  const { name, userId } = params;
   try {
     await connectToDatabase();
     const project = new Project({
       name,
-      description,
       userId,
-      color,
     });
     await project.save();
-    revalidatePath('/dashboard');
+    revalidatePath('/dashboard/projects');
     return parseStringify(project);
   } catch (error) {
     console.error(error);
@@ -34,5 +32,19 @@ export async function getUserProjects(params: any) {
   } catch (error) {
     console.error(error);
     throw new Error('Failed to fetch projects');
+  }
+}
+
+export async function getProjectById(params: any) {
+  const { projectId } = params;
+
+  try {
+    await connectToDatabase();
+    //@ts-ignore
+    const project = await Project.findById(projectId).exec();
+    return parseStringify(project);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch project');
   }
 }

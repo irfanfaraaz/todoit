@@ -124,3 +124,39 @@ export async function getTodosByProjectId(params: any) {
     throw new Error('Failed to fetch todos');
   }
 }
+
+export async function deleteTodoById(params: any) {
+  const { taskId } = params;
+  try {
+    await connectToDatabase();
+    //@ts-ignore
+    const todo = await Todo.findByIdAndDelete(taskId);
+    if (!todo) {
+      throw new Error('Todo not found');
+    }
+    revalidatePath('/dashboard');
+    return parseStringify(todo);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to delete todo');
+  }
+}
+
+export async function updateTodoById(params: any) {
+  const { taskId, updateData } = params;
+  try {
+    await connectToDatabase();
+    //@ts-ignore
+    const todo = await Todo.findByIdAndUpdate(taskId, updateData, {
+      new: true,
+    });
+    if (!todo) {
+      throw new Error('Todo not found');
+    }
+    revalidatePath('/dashboard');
+    return parseStringify(todo);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to update todo');
+  }
+}

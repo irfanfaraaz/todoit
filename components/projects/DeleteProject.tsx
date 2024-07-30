@@ -44,6 +44,7 @@ export default function ProjectActions({
     } catch (error) {
       toast({
         title: 'Error',
+        variant: 'destructive',
         description: 'Failed to delete project',
       });
     }
@@ -62,6 +63,7 @@ export default function ProjectActions({
       toast({
         title: 'Error',
         description: 'Failed to update project',
+        variant: 'destructive',
       });
     }
   };

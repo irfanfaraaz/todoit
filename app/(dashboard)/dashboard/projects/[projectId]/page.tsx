@@ -32,34 +32,32 @@ export default async function ProjectIdPage({
   const projectName = project?.name || '';
 
   return (
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:px-8">
-      <div className="px:10 md:px-20">
-        <div className="flex flex-wrap items-center justify-between gap-2 lg:gap-0">
-          <h1 className="text-lg font-semibold md:text-2xl">
-            {projectName || 'Project'}
-          </h1>
-          <div className="flex items-center gap-6 lg:gap-12">
-            <DeleteProject projectId={projectId} userId={user.id} />
-          </div>
-        </div>
-        <div className="mt-4 flex flex-col gap-1">
-          <Todos items={inCompletedTodosByProject} />
-
-          <div className="pb-6">
-            <AddTaskWrapper
-              userId={user.id}
-              projects={projects}
-              labels={labels}
-              projectId={projectId}
-            />
-          </div>
-
-          <Todos items={completedTodosByProject} />
-          <div className="flex items-center gap-2 space-x-4  p-2 text-sm text-foreground/80">
-            <CompletedTodos totalTodos={completedTodosTotal} />
-          </div>
+    <div className="px:10 md:px-20">
+      <div className="flex flex-wrap items-center justify-between gap-2 lg:gap-0">
+        <h1 className="text-lg font-semibold md:text-2xl">
+          {projectName || 'Project'}
+        </h1>
+        <div className="flex items-center gap-6 lg:gap-12">
+          <DeleteProject projectId={projectId} userId={user.id} />
         </div>
       </div>
-    </main>
+      <div className="mt-4 flex flex-col gap-1">
+        <Todos items={inCompletedTodosByProject} />
+
+        <div className="pb-6">
+          <AddTaskWrapper
+            userId={user.id}
+            projects={projects}
+            labels={labels}
+            projectId={projectId}
+          />
+        </div>
+
+        <Todos items={completedTodosByProject} />
+        <div className="flex items-center gap-2 space-x-4  p-2 text-sm text-foreground/80">
+          <CompletedTodos totalTodos={completedTodosTotal} />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -76,3 +76,31 @@ export async function deleteProject(params: any) {
     throw new Error('Failed to delete project and its tasks');
   }
 }
+
+export async function updateProject(params: any) {
+  const { projectId, userId, name } = params;
+
+  try {
+    await connectToDatabase();
+    //@ts-ignore
+    const project = await Project.findById(projectId).exec();
+    if (!project) {
+      throw new Error('Project not found');
+    }
+
+    if (project.userId.toString() !== userId) {
+      throw new Error('Unauthorized: You can only update your own projects');
+    }
+
+    await Project.updateOne(
+      { _id: projectId },
+      { $set: { name: name } },
+    ).exec();
+    await project.save();
+    revalidatePath(`/dashboard/projects${projectId}`);
+    return parseStringify(project);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to update project');
+  }
+}

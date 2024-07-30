@@ -25,7 +25,7 @@ export default async function Today() {
   });
 
   const overdueTodos = await todos.filter((todo: any) => {
-    return moment(todo.dueDate).isBefore(startOfToday);
+    return moment(todo.dueDate).isBefore(startOfToday) && !todo.isCompleted;
   });
 
   return (

@@ -20,7 +20,7 @@ export default async function Upcoming() {
   const startOfToday = moment().startOf('day');
 
   const overdueTodos = await todos.filter((todo: any) => {
-    return moment(todo.dueDate).isBefore(startOfToday);
+    return moment(todo.dueDate).isBefore(startOfToday) && !todo.isCompleted;
   });
 
   const groupTodosByDate = todos.reduce((acc: any, todo: any) => {

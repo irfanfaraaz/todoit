@@ -17,7 +17,7 @@ export default function Task({
   showDetails?: boolean;
 }) {
   const { title, description, dueDate } = data;
-  const isOverdue = moment(dueDate).isBefore(moment(), 'day');
+  const isOverdue = moment(dueDate).isBefore(moment(), 'day') && !isCompleted;
 
   return (
     <div

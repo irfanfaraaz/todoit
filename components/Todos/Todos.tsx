@@ -4,7 +4,15 @@ import { useToast } from '../ui/use-toast';
 import Task from './Task';
 import { checkATodo, unCheckATodo } from '@/lib/actions/todo.actions';
 
-const Todos = ({ items }: { items: any }) => {
+const Todos = ({
+  items,
+  projects,
+  labels,
+}: {
+  items: any[];
+  projects?: any[];
+  labels?: any;
+}) => {
   const { toast } = useToast();
   const messages = [
     "You're a rockstar",
@@ -35,6 +43,8 @@ const Todos = ({ items }: { items: any }) => {
     <Task
       key={task._id}
       data={task}
+      projects={projects}
+      labels={labels}
       isCompleted={task.isCompleted}
       handleOnChange={() => handleOnChangeTodo(task)}
     />

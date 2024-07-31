@@ -1,5 +1,5 @@
 'use client';
-import { Menu, PlusIcon } from 'lucide-react';
+import { Hash, Menu, PlusIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -8,10 +8,46 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from '../ui/dialog';
+import AddLabelDialog from '../projects/AddLabel';
+import { useEffect, useState } from 'react';
+import AddProjectDialog from '../projects/AddProject';
 // import SearchForm from './SearchBar';
 
-const MobileNav = () => {
+const MobileNav = ({
+  projectList,
+  userId,
+}: {
+  projectList: any[];
+  userId: any;
+}) => {
+  const primaryNavItems = siteConfig.primaryNavItems;
   const pathname = usePathname();
+  const LIST_OF_TITLE_IDS: any = {
+    primary: '',
+    projects: 'My Projects',
+  };
+
+  const [navItems, setNavItems] = useState([...primaryNavItems]);
+
+  const renderItems = (projectList: any) => {
+    return projectList.map(
+      ({ _id, name }: { _id: any; name: any }, idx: any) => {
+        return {
+          ...(idx === 0 && { id: 'projects' }),
+          name,
+          link: `/dashboard/projects/${_id.toString()}`,
+          icon: Hash, // Change here: use the component directly
+        };
+      },
+    );
+  };
+  useEffect(() => {
+    if (projectList) {
+      const projectItems = renderItems(projectList);
+      const items = [...primaryNavItems, ...projectItems];
+      setNavItems(items);
+    }
+  }, [primaryNavItems, projectList]);
   return (
     <div className="flex flex-col">
       <header className="flex items-center gap-4 border-b bg-muted/40 px-4 max-md:h-14  lg:px-6">
@@ -27,20 +63,20 @@ const MobileNav = () => {
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col">
             <nav className="grid gap-2 text-lg font-medium">
-              {siteConfig.primaryNavItems.map((item, idx) => (
+              {navItems.map((item, idx) => (
                 <div key={idx}>
                   {item.id && (
                     <div
                       className={cn(
-                        'mb-2 mt-6 flex items-center',
+                        'mb-2 mt-6 flex items-center p-2',
                         item.id === 'filters' && 'my-0',
                       )}>
-                      {/* <p className="flex flex-1 text-base">
-                      {LIST_OF_TITLE_IDS[id]}
-                    </p>
-                    {LIST_OF_TITLE_IDS[id] === 'My Projects' && (
-                      <AddProjectDialog />
-                    )} */}
+                      <p className="flex flex-1 text-base">
+                        {LIST_OF_TITLE_IDS[item.id]}
+                      </p>
+                      {LIST_OF_TITLE_IDS[item.id] === 'My Projects' && (
+                        <AddProjectDialog userId={userId} />
+                      )}
                     </div>
                   )}
                   <div className={cn('flex items-center lg:w-full')}>
@@ -60,7 +96,8 @@ const MobileNav = () => {
                         <div className="flex w-full items-center gap-4">
                           <div className="flex items-center gap-2">
                             <p className="flex text-left text-base">
-                              <item.icon className="h-4 w-4" />
+                              <item.icon className="h-4 w-4" />{' '}
+                              {/* Change here: render the component */}
                             </p>
                             <p>{item.name}</p>
                           </div>
@@ -74,7 +111,7 @@ const MobileNav = () => {
                               aria-label="Add a Label"
                             />
                           </DialogTrigger>
-                          {/* <AddLabelDialog /> */}
+                          <AddLabelDialog userId={userId} />
                         </Dialog>
                       )}
                     </div>
@@ -84,18 +121,6 @@ const MobileNav = () => {
             </nav>
           </SheetContent>
         </Sheet>
-        {/* <div className="flex w-full items-center gap-1 py-2 md:justify-between md:gap-2">
-          {/* <div className="lg:flex-1">
-            <Link href={navLink}>
-              <p className="text-sm font-semibold text-foreground/70 w-24">
-                {navTitle}
-              </p>
-            </Link>
-          </div>
-          <div className="w-full flex-1 place-content-center">
-            {/* <SearchForm /> 
-          </div> 
-        </div> */}
       </header>
     </div>
   );

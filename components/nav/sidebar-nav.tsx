@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from '../ui/dialog';
 import { useEffect, useState } from 'react';
 import AddProjectDialog from '../projects/AddProject';
+import AddLabelDialog from '../projects/AddLabel';
 
 export function SidebarNav({
   projectList,
@@ -107,7 +108,7 @@ export function SidebarNav({
                             aria-label="Add a Label"
                           />
                         </DialogTrigger>
-                        {/* <AddLabelDialog /> */}
+                        <AddLabelDialog userId={userId} />
                       </Dialog>
                     )}
                   </div>

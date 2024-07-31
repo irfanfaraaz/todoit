@@ -26,11 +26,11 @@ export default async function TodoList() {
         <h1 className="text-lg font-semibold md:text-2xl">Inbox</h1>
       </div>
       <div className="flex flex-col gap-1 py-4">
-        <Todos items={inCompleteTodos} />
+        <Todos projects={projects} labels={labels} items={inCompleteTodos} />
       </div>
       <AddTaskWrapper projects={projects} labels={labels} userId={user.id} />
       <div className="flex flex-col gap-1 py-4">
-        <Todos items={completedTodos} />
+        <Todos projects={projects} labels={labels} items={completedTodos} />
       </div>
       <CompletedTodos totalTodos={completedTodos.length} />
     </div>

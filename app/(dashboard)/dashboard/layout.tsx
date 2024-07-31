@@ -22,7 +22,7 @@ export default async function Layout({ children }: SettingsLayoutProps) {
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
           <SidebarNav projectList={projects} userId={user.id} />
           <div className="flex flex-col">
-            <MobileNav />
+            <MobileNav projectList={projects} userId={user.id} />
             <main className="flex flex-1 flex-col gap-4 p-4 lg:px-8">
               {children}
             </main>

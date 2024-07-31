@@ -39,8 +39,8 @@ const FormSchema = z.object({
   description: z.string().optional().default(''),
   dueDate: z.date({ required_error: 'A due date is required' }),
   priority: z.string().min(1, { message: 'Please select a priority' }),
-  projectId: z.string().min(1, { message: 'Please select a Project' }),
-  labelId: z.string().min(1, { message: 'Please select a Label' }),
+  projectId: z.string().optional(),
+  labelId: z.string().optional(),
 });
 
 export default function AddTaskInline({
@@ -86,24 +86,28 @@ export default function AddTaskInline({
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     const { title, description, priority, dueDate, projectId, labelId } = data;
 
-    if (projectId) {
-      const taskData = {
-        title,
-        userId,
-        description,
-        priority: parseInt(priority),
-        dueDate: moment(dueDate).valueOf(),
-        projectId: projectId as string,
-        labelId: labelId as string,
-      };
+    const taskData: any = {
+      title,
+      userId,
+      description,
+      priority: parseInt(priority),
+      dueDate: moment(dueDate).valueOf(),
+    };
 
-      await createTodo(taskData);
-      toast({
-        title: 'Task added 🎉',
-        description: 'Your task has been added successfully. ✅',
-      });
-      setShowAddTask(false);
+    if (projectId) {
+      taskData.projectId = projectId as string;
     }
+
+    if (labelId) {
+      taskData.labelId = labelId as string;
+    }
+
+    await createTodo(taskData);
+    toast({
+      title: 'Task added 🎉',
+      description: 'Your task has been added successfully. ✅',
+    });
+    setShowAddTask(false);
   }
 
   return (

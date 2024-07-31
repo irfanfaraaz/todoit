@@ -6,13 +6,12 @@ import { parseStringify } from '../utils';
 import { revalidatePath } from 'next/cache';
 
 export async function createLabel(params: any) {
-  const { name, userId, color } = params;
+  const { name, userId } = params;
   try {
     await connectToDatabase();
     const label = new Label({
       name,
       userId,
-      color,
     });
     await label.save();
     revalidatePath('/dashboard');

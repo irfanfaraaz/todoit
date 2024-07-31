@@ -8,7 +8,7 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from '../ui/dialog';
-import AddLabelDialog from '../projects/AddLabel';
+import AddLabelDialog from '../labels/AddLabel';
 import { useEffect, useState } from 'react';
 import AddProjectDialog from '../projects/AddProject';
 // import SearchForm from './SearchBar';

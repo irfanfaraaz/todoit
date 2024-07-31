@@ -9,12 +9,14 @@ export const AddTaskWrapper = ({
   labels,
   parentTask,
   projectId,
+  labelId,
 }: {
   userId?: string;
   projects?: any[];
   labels?: any[];
   parentTask?: any;
   projectId?: any;
+  labelId?: any;
 }) => {
   const [showAddTask, setShowAddTask] = useState(false);
 

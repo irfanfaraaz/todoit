@@ -22,9 +22,9 @@ export const siteConfig = {
     { link: '/dashboard/upcoming', icon: CalendarDays, name: 'Upcoming' },
     {
       id: 'filters',
-      link: '/dashboard/filter-labels',
+      link: '/dashboard/labels',
       icon: Grid2X2,
-      name: 'Filters',
+      name: 'Filters and Labels',
     },
   ],
   links: {

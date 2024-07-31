@@ -124,6 +124,18 @@ export async function getTodosByProjectId(params: any) {
     throw new Error('Failed to fetch todos');
   }
 }
+export async function getTodosByLabelId(params: any) {
+  try {
+    await connectToDatabase();
+    const { labelId } = params;
+    //@ts-ignore
+    const todos = await Todo.find({ labelId }).populate('labelId').exec();
+    return parseStringify(todos);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Failed to fetch todos');
+  }
+}
 
 export async function deleteTodoById(params: any) {
   const { taskId } = params;

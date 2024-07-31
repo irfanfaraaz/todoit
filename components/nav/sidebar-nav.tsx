@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation';
 import { Dialog, DialogTrigger } from '../ui/dialog';
 import { useEffect, useState } from 'react';
 import AddProjectDialog from '../projects/AddProject';
-import AddLabelDialog from '../projects/AddLabel';
+import AddLabelDialog from '../labels/AddLabel';
 
 export function SidebarNav({
   projectList,

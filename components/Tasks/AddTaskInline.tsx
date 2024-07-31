@@ -222,24 +222,29 @@ export default function AddTaskInline({
               name="labelId"
               render={({ field }) => (
                 <FormItem>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value || ''}
-                    defaultValue={labelId || field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a Label" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {labels?.map((label: any, idx: number) => (
-                        <SelectItem key={idx} value={label._id}>
-                          {label?.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
+                  {labels && labels.length > 0 ? (
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value || ''}
+                      defaultValue={labelId || field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a Label" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {labels?.map((label: any, idx: number) => (
+                          <SelectItem key={idx} value={label._id}>
+                            {label?.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">
+                      Create a label from the nav menu to add it here
+                    </p>
+                  )}
                   <FormMessage />
                 </FormItem>
               )}
@@ -250,24 +255,29 @@ export default function AddTaskInline({
             name="projectId"
             render={({ field }) => (
               <FormItem>
-                <Select
-                  onValueChange={field.onChange}
-                  value={field.value || ''}
-                  defaultValue={projectId || field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a Project" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {projects?.map((project: any, idx: number) => (
-                      <SelectItem key={idx} value={project._id}>
-                        {project?.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
+                {projects && projects.length > 0 ? (
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value || ''}
+                    defaultValue={projectId || field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a Project" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {projects?.map((project: any, idx: number) => (
+                        <SelectItem key={idx} value={project._id}>
+                          {project?.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Create a project from the navigation menu to add it here
+                  </p>
+                )}
                 <FormMessage />
               </FormItem>
             )}

@@ -7,7 +7,9 @@ import Todos from '../Todos/Todos';
 import { getCurrentUser } from '@/lib/session';
 import { getAllUserTodos } from '@/lib/actions/todo.actions';
 import { AddTaskWrapper } from '../Tasks/AddTaskWrapper';
-import { labels, projects } from '@/lib/constants';
+import { getUserProjects } from '@/lib/actions/project.actions';
+import { getUserLabels } from '@/lib/actions/label.actions';
+// import { labels, projects } from '@/lib/constants';
 
 export default async function Today() {
   const user = await getCurrentUser();
@@ -16,6 +18,8 @@ export default async function Today() {
     throw new Error('User not found');
   }
   const todos = await getAllUserTodos({ userId: user.id });
+  const projects = await getUserProjects({ userId: user.id });
+  const labels = await getUserLabels({ userId: user.id });
   const startOfToday = moment().startOf('day');
   const endOfToday = moment().endOf('day');
 
@@ -40,7 +44,7 @@ export default async function Today() {
         ) : (
           <>
             <p className="text-red-500">Oops! You are running late.</p>
-            <Todos items={overdueTodos} />
+            <Todos projects={projects} labels={labels} items={overdueTodos} />
           </>
         )}
       </div>
@@ -52,7 +56,7 @@ export default async function Today() {
           <Dot />
           {moment(new Date()).format('dddd')}
         </p>
-        <Todos items={todayTodos} />
+        <Todos projects={projects} labels={labels} items={todayTodos} />
       </div>
       <AddTaskWrapper userId={user.id} projects={projects} labels={labels} />
     </div>

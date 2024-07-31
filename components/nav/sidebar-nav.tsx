@@ -48,11 +48,9 @@ export function SidebarNav({
     );
   };
   useEffect(() => {
-    if (projectList) {
-      const projectItems = renderItems(projectList);
-      const items = [...primaryNavItems, ...projectItems];
-      setNavItems(items);
-    }
+    const projectItems = renderItems(projectList);
+    const items = [...primaryNavItems, ...projectItems];
+    setNavItems(items);
   }, [primaryNavItems, projectList]);
 
   return (
@@ -115,6 +113,13 @@ export function SidebarNav({
                 </div>
               </div>
             ))}
+            {/* Ensure "My Projects" section is always visible */}
+            {projectList.length === 0 && (
+              <div className="mb-2 mt-6 flex items-center p-2">
+                <p className="flex flex-1 text-base">My Projects</p>
+                <AddProjectDialog userId={userId} />
+              </div>
+            )}
           </nav>
         </div>
         <div className="mt-auto p-4">

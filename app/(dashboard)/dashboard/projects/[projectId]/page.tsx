@@ -2,9 +2,10 @@ import ProjectActions from '@/components/projects/DeleteProject';
 import { AddTaskWrapper } from '@/components/Tasks/AddTaskWrapper';
 import CompletedTodos from '@/components/Todos/CompletedTodos';
 import Todos from '@/components/Todos/Todos';
-import { getProjectById } from '@/lib/actions/project.actions';
+import { getUserLabels } from '@/lib/actions/label.actions';
+import { getProjectById, getUserProjects } from '@/lib/actions/project.actions';
 import { getTodosByProjectId } from '@/lib/actions/todo.actions';
-import { labels, projects } from '@/lib/constants';
+// import { projects, labels } from '@/lib/constants';
 import { getCurrentUser } from '@/lib/session';
 
 export default async function ProjectIdPage({
@@ -17,6 +18,8 @@ export default async function ProjectIdPage({
 
   const user = await getCurrentUser();
   const todos = await getTodosByProjectId({ projectId });
+  const projects = await getUserProjects({ userId: user.id });
+  const labels = await getUserLabels({ userId: user.id });
 
   const project = await getProjectById({ projectId });
 
@@ -42,7 +45,11 @@ export default async function ProjectIdPage({
         </div>
       </div>
       <div className="mt-4 flex flex-col gap-1">
-        <Todos items={inCompletedTodosByProject} />
+        <Todos
+          projects={projects}
+          labels={labels}
+          items={inCompletedTodosByProject}
+        />
 
         <div className="pb-6">
           <AddTaskWrapper
@@ -53,7 +60,11 @@ export default async function ProjectIdPage({
           />
         </div>
 
-        <Todos items={completedTodosByProject} />
+        <Todos
+          projects={projects}
+          labels={labels}
+          items={completedTodosByProject}
+        />
         <div className="flex items-center gap-2 space-x-4  p-2 text-sm text-foreground/80">
           <CompletedTodos totalTodos={completedTodosTotal} />
         </div>

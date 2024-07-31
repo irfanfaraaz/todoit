@@ -5,7 +5,7 @@ import Todos from './Todos';
 import { AddTaskWrapper } from '../Tasks/AddTaskWrapper';
 import { getUserLabels } from '@/lib/actions/label.actions';
 import { getUserProjects } from '@/lib/actions/project.actions';
-import { labels, projects } from '@/lib/constants';
+// import { labels, projects } from '@/lib/constants';
 
 export default async function TodoList() {
   const user = await getCurrentUser();
@@ -14,8 +14,8 @@ export default async function TodoList() {
     throw new Error('User not found');
   }
   const todos = await getAllUserTodos({ userId: user.id });
-  // const projects = await getUserProjects({ userId: user.id });
-  // const labels = await getUserLabels({ userId: user.id });
+  const projects = await getUserProjects({ userId: user.id });
+  const labels = await getUserLabels({ userId: user.id });
 
   const completedTodos = todos.filter((todo: any) => todo.isCompleted);
   const inCompleteTodos = todos.filter((todo: any) => !todo.isCompleted);

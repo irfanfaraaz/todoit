@@ -26,11 +26,11 @@ export default async function AuthenticationPage() {
             <div className="block items-center justify-center self-center md:flex lg:hidden">
               <Image src="/icon.png" alt="logo" width={48} height={48} />
             </div>
-            <div className="flex flex-col space-y-2 text-center">
+            {/* <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">
                 Login with Email
               </h1>
-            </div>
+            </div> */}
             <UserAuthForm />
           </div>
           <p className="py-3 text-center text-sm text-muted-foreground">

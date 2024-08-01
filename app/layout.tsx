@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/Theme/theme-provider';
 import { seoMetaData } from '@/config/seo-meta-data';
 import { fontMono, fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = seoMetaData;
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable,
           )}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <NextTopLoader />
             <div className="relative flex h-screen flex-col">
               <SiteHeader />
               <div className="flex-1">{children}</div>
